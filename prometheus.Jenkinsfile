@@ -17,7 +17,9 @@ pipeline
                    sh '''
                    mkdir -p /opt/prometheus
                    chmod 777 /opt/prometheus
+                  kubectl delete -f prometheus-configmap.yml | exit 0
                   kubectl apply -f prometheus-configmap.yml
+                  kubectl delete -f prometheus-deploy | exit 0
                   kubectl apply -f prometheus-deploy.yml
                   
                    '''
