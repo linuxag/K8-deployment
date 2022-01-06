@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-           name: prometheus-conf
+           name: prometheus-configmap
         - name: prometheus-storage-volume
           hostPath:
             path: /opt/prometheus
