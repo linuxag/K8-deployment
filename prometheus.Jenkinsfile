@@ -15,7 +15,7 @@ pipeline
             
             steps{
                    sh '''
-                  kubectl apply -f prometheus.deploy.yml
+                  kubectl apply -f prometheus-deploy.yml
                    '''
                }
         
