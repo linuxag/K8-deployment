@@ -1,4 +1,4 @@
- apiVersion: v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-configmap
@@ -10,11 +10,9 @@ data:
       scrape_interval:     30s
       evaluation_interval: 30s
     scrape_configs:
-      - job_name: 'ep-node-1'
+      - job_name: 'ep-newbielinux-1'
         static_configs:
         - targets: ['newbielinux.tk:9100']
-
-    scrape_configs:
-      - job_name: 'lp-k8control-1'
+      - job_name: 'lp-raspberrypi-1'
         static_configs:
         - targets: ['10.8.0.2:9100']
