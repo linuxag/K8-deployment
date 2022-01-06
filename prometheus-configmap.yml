@@ -1,7 +1,14 @@
- global:
+ apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-configmap
+  labels:
+    name: prometheus-configmap
+data:
+  prometheus.yml: |-
+    global:
       scrape_interval:     30s
       evaluation_interval: 30s
-
     scrape_configs:
       - job_name: 'ep-node-1'
         static_configs:
