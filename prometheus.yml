@@ -1,0 +1,13 @@
+ global:
+      scrape_interval:     30s
+      evaluation_interval: 30s
+
+    scrape_configs:
+      - job_name: 'ep-node-1'
+        static_configs:
+        - targets: ['newbielinux.tk:9100']
+
+    scrape_configs:
+      - job_name: 'lp-k8control-1'
+        static_configs:
+        - targets: ['10.8.0.2:9100']
