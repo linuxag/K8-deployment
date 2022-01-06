@@ -15,7 +15,9 @@ pipeline
             
             steps{
                    sh '''
+                  kubectl apply -f proemtheus-configmap.yml
                   kubectl apply -f prometheus-deploy.yml
+                  
                    '''
                }
         
