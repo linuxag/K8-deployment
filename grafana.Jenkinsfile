@@ -17,7 +17,7 @@ pipeline
                    sh '''
                    pwd
                    ls -ltr
-                   mkdir /opt/grafana
+                   mkdir -p /opt/grafana
                    chmod 777 /opt/grafana
                    kubectl delete -f grafana-deploy.yml | exit 0
                    kubectl apply -f grafana-deploy.yml
