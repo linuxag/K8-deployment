@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  labels:
+    app: prometheus
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        env: prod
+    spec:
+      containers:
+      - name: prometheus-container
+        image: prom/prometheus
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/prometheus/prometheus.yml
+            subPath: prometheus.yml
+          - name: prometheus-storage-volume
+            mountPath: /prometheus
+        ports:
+        - containerPort: 9090
+      volumes:
+        - name: config-volume
+          configMap:
+           name: prometheus-conf
+        - name: prometheus-storage-volume
+          hostPath:
+            path: /opt/prometheus
+            type: Directory
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: prometheus-service
+  labels:
+    app: prometheus
+    env: prod
+spec:
+  selector:
+    app: prometheus
+    env: prod
+  ports:
+  - name: promui
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
+    nodePort: 30090
+  type: NodePort
