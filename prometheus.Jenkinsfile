@@ -15,6 +15,8 @@ pipeline
             
             steps{
                    sh '''
+                   mkdir -p /opt/prometheus
+                   chmod 777 /opt/prometheus
                   kubectl apply -f prometheus-configmap.yml
                   kubectl apply -f prometheus-deploy.yml
                   
