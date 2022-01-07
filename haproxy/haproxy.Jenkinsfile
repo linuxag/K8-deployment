@@ -12,8 +12,9 @@ pipeline
             
             steps{
                    sh '''
+                   whoami
                    mkdir -p /opt/haproxy
-                   chmod 777 /opt/haproxy/
+                   chmod 777 /opt/haproxy
                    cp haproxy/haproxy.cfg /opt/haproxy/
                    '''
                }
