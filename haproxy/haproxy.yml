@@ -1,0 +1,14 @@
+version: '3'
+services:
+  haproxy:
+    image: haproxy:latest
+    user: root
+    restart: unless-stopped
+    environment:
+      TZ: "Asia/Kolkata"
+    volumes:
+      - /opt/haproxy:/usr/local/etc/haproxy
+    ports:
+      - 80:80
+      - 8999:8999
+      - 443:443
