@@ -27,8 +27,8 @@ pipeline
                    sh '''
                    pwd
                    cd haproxy
-                   docker-compose -f haproxy-compose.yml down | exit 0
-                   docker-compose -f haproxy-compose.yml up -d
+                   docker-compose -f haproxy.yml down | exit 0
+                   docker-compose -f haproxy.yml up -d
                    '''
                }
         
