@@ -1,0 +1,35 @@
+
+def git_url = 'https://github.com/K8-deployment'
+
+pipeline
+{
+    agent {
+        label 'worker-1'
+    }
+     options{
+        timestamps()
+        timeout(time: 30, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+    stages
+    {
+        /*stage('Git-checkout')
+        {
+            steps
+            {
+                git credentialsId: 'jenkins-github', url: git_url , branch: git_branch
+            }
+        }*/
+        stage('kubernetes-deploy')
+        {
+            steps
+            {
+                sh '''
+                kubectl apply -f Jenkins/jenkins-deploy.yml 
+                sleep 15 
+                kubectl get pods         
+                '''
+            }
+        }
+    }
+}
